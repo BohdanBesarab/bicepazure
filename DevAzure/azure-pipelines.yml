@@ -19,12 +19,13 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '-c Release -o ./output'
+    arguments: '-c Release -o ./outputs'
 - task: UniversalPackages@0
   inputs:
     command: 'publish'
-    publishDirectory: './output'
+    publishDirectory: './outputs'
     feedsToUsePublish: 'internal'
-    vstsFeedPublish: 'EleksCamp'
-    vstsFeedPackagePublish: 'my_aws'
+    vstsFeedPublish: '2fc2ef05-9712-490b-bc12-62ccfa7d648f/dc06553e-a98c-4013-ad62-bd8beb3f0b9b'
+    vstsFeedPackagePublish: 'me_awesome.mvc'
     versionOption: 'major'
+
