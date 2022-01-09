@@ -1,0 +1,31 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+    includePreviewVersions: true
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '-c Release -o ./outputs'
+- task: UniversalPackages@0
+  inputs:
+    command: 'publish'
+    publishDirectory: './outputs'
+    feedsToUsePublish: 'internal'
+    vstsFeedPublish: '2fc2ef05-9712-490b-bc12-62ccfa7d648f/dc06553e-a98c-4013-ad62-bd8beb3f0b9b'
+    vstsFeedPackagePublish: 'me_awesome.mvc'
+    versionOption: 'major'
+
