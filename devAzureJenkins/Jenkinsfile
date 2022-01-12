@@ -1,28 +1,39 @@
 @Library('eleksCamp') _
 
+
 pipeline{
     agent any 
+
+    options {
+        ansiColor('xterm')
+    }
     stages {
         stage('Build and archive'){
             steps{
+                echo "Build and archive message"
                 script{
                     buildAndArchive()
                     }
                 }
             }
-            stage ('Publish'){
-                steps {
+            stage('Publish'){
+                steps{
+                    echo "Publish message"
                     script{
-                    publishToAzureArtifacts('another.great.mvc')
+                        publishToAzureArtifacts('another.great.mvc3')
                     }
                 }
             }
         
-    }
-    post{
-        always {
-            cleanWs()
         }
-        
+    
+        post{
+            always{
+                cleanWs ()
+        }
     }
 }
+
+
+
+
