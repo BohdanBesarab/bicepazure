@@ -40,7 +40,7 @@ resource vmName 'Microsoft.Compute/virtualMachines@2021-07-01' = [for (item, i) 
         adminUsername: adminUsername
         adminPassword: adminPassword
         windowsConfiguration: {
-          provisionVmAgent: 'true'
+          provisionVMAgent: 'true'
         }
       }
       hardwareProfile: {
@@ -93,7 +93,7 @@ resource vmName 'Microsoft.Compute/virtualMachines@2021-07-01' = [for (item, i) 
   }]
 
   resource nicName 'Microsoft.Network/networkInterfaces@2021-05-01' = [for (item, i) in locationNames: {
-    name: concat(nicName_var, i)
+    name: '${nicName_var}${i}'
     location: item
     properties: {
       ipConfigurations: [
@@ -104,7 +104,7 @@ resource vmName 'Microsoft.Compute/virtualMachines@2021-07-01' = [for (item, i) 
               id: resourceId('Microsoft.Network/virtualNetworks/subnets', '${VnetName_var}${i}', subnetName)
             }
             privateIPAllocationMethod: 'Dynamic'
-            publicIpAddress: {
+            publicIPAddress: {
               id: resourceId('Microsoft.Network/publicIpAddresses', '${pipName_var}${i}')
             }
           }
@@ -120,7 +120,7 @@ resource vmName 'Microsoft.Compute/virtualMachines@2021-07-01' = [for (item, i) 
     name: '${pipName_var}${i}'
     location: item
     properties: {
-      publicIpAllocationMethod: 'Dynamic'
+      publicIPAllocationMethod: 'Dynamic'
     }
   }]
   

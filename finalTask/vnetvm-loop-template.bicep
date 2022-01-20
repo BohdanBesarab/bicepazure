@@ -15,7 +15,7 @@ param adminUsername string = 'bohdan.besarab'
 @description('Admin password')
 @minLength(8)
 @secure()
-param adminPassword string 
+param adminPassword string ='123.AskinG.324'
 
 var first  = 0
 var second = 1

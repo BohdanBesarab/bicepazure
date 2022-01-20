@@ -16,7 +16,7 @@ resource peering01 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@202
 }
 
 resource peering_back 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2021-02-01' =  {
-  name: '${VnetName_var}${second}_to_${VnetName_var}${first}'
+  name: toLower('${VnetName_var}${second}_to_${VnetName_var}${first}')
   properties: {
     allowForwardedTraffic: true
     allowGatewayTransit: false

@@ -1,19 +1,20 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
 trigger:
-- master
+- main
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Azure subscription 1(b04ebdb7-458c-4735-b3db-add60818da7f)'
-    scriptType: 'pscore'
+    azureSubscription: 'Azure subscription 1(1)(b04ebdb7-458c-4735-b3db-add60818da7f)'
+    scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az deployment sub create  -f  vnetvm-loop-template.bicep --location westeurope'
+    inlineScript: |
+      az deployment sub create --location westeurope --template-file vnetvm-loop-template.bicep
