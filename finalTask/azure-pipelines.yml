@@ -13,7 +13,7 @@ pool:
 steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'Azure subscription 1(1)(b04ebdb7-458c-4735-b3db-add60818da7f)'
+    azureSubscription: 'Azure subscription 1(b04ebdb7-458c-4735-b3db-add60818da7f)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
