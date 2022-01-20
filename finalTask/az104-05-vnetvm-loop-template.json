@@ -42,8 +42,8 @@
     "VnetName": "az104-05-vnet",
     "pipName": "az104-05-pip",
     "nsgName": "az104-05-nsg",
-    "computeApiVersion": "2018-06-01",
-    "networkApiVersion": "2018-08-01"
+    "computeApiVersion": "2021-07-01",
+    "networkApiVersion": "2021-02-01"
   },
     "resources": [
         {
