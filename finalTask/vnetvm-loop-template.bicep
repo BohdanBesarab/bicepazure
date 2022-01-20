@@ -9,19 +9,18 @@ param location1 string = 'westeurope'
 @description('Second Azure Region')
 param location2 string = 'eastus'
 
-@description('Location')
-param locationNames array = [
-'${location1}'
-'${location1}'
-'${location2}'
-]
+@description('Admin username')
+param adminUsername string = 'bohdan.besarab'
+
+@description('Admin password')
+@minLength(8)
+@secure()
+param adminPassword string 
 
 var first  = 0
 var second = 1
 var third = 2
-param username string
-param password string
-var subnetName = 'subnet0'
+
 param VnetName_var string = 'az104-05-vnet'
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
@@ -35,32 +34,11 @@ module startCreating './module/startcreating.bicep' = {
   params: {
   location1: location1
   location2: location2
-  adminPassword: password
-  adminUsername: username
+  adminPassword: adminPassword
+  adminUsername: adminUsername
   }
 }
 
-
-
-resource VnetName 'Microsoft.Network/virtualNetworks@2021-07-01' = [for (item, i) in locationNames: {
-  name: concat(VnetName_var, i)
-  location: item
-  properties: {
-    addressSpace: {
-      addressPrefixes: [
-        '10.5${i}.0.0/22'
-      ]
-    }
-    subnets: [
-      {
-        name: subnetName
-        properties: {
-          addressPrefix: '10.5${i}.0.0/24'
-        }
-      }
-    ]
-  }
-}]
 
 module peering01 'module/peering01.bicep' = {
   name: '${VnetName_var}${first}'
